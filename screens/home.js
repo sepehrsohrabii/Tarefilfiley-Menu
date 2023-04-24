@@ -16,15 +16,20 @@ const HomeScreen = () => {
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState();
   const fetchMenuData = async () => {
-    const response = await axios.post('http://localhost:3000/restaurant/get-data', {
-      restaurantLink,
-    });
-    if (response.status === 200) {
-      setRestaurant(response.data.restaurant);
-      setCategories(response.data.categories);
-      setProducts(response.data.products);
+    try {
+      const response = await axios.post('http://localhost:3000/restaurant/get-data', {
+        restaurantLink,
+      });
+      if (response.status === 200) {
+        setRestaurant(response.data.restaurant);
+        setCategories(response.data.categories);
+        setProducts(response.data.products);
+      }
+    } catch (error) {
+      console.error(error);
     }
   };
+
   useEffect(() => {
     fetchMenuData();
   }, []);
