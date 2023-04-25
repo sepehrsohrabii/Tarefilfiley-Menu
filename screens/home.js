@@ -17,7 +17,7 @@ const HomeScreen = () => {
   const [products, setProducts] = useState();
   const fetchMenuData = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/restaurant/get-data', {
+      const response = await axios.post('https://api.tarefilfiley.me/restaurant/get-data', {
         restaurantLink,
       });
       if (response.status === 200) {
