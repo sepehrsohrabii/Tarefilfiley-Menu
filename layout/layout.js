@@ -3,16 +3,21 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from '../screens/home';
 import * as Linking from 'expo-linking';
 
-const prefix = Linking.createURL('/');
-
 const Stack = createNativeStackNavigator();
 const Layout = () => {
+  const config = {
+    screens: {
+      Home: '/:restaurantLink',
+    },
+  };
+
   const linking = {
-    prefixes: [prefix],
+    prefixes: ['https://menu.tarefilfiley.me'],
+    config,
   };
 
   return (
-    <NavigationContainer>
+    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
       <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Home" component={HomeScreen} />
       </Stack.Navigator>
