@@ -5,7 +5,7 @@ loadFont();
 const theme = {
   typography: {
     heading1: {
-      fontSize: '64px',
+      fontSize: '48px',
       fontFamily: 'IS_Bold',
     },
     heading2: {
@@ -33,11 +33,11 @@ const theme = {
       fontFamily: 'IS',
     },
     subTitle: {
-      fontSize: '18px',
+      fontSize: '16px',
       fontFamily: 'IS',
     },
     subTitle_M: {
-      fontSize: '18px',
+      fontSize: '16px',
       fontFamily: 'IS_Medium',
     },
     paragraph1: {
@@ -80,7 +80,6 @@ const theme = {
     four: '#C64756',
     fourWithOpacity: 'rgba(198, 71, 86, 0.3)',
     darkGray: '#303030',
-    lighterGray: '#edebeb',
     lightGray: '#e0e0e0',
     lightTextColor: '#8e8e8e',
     defaultTextColor: '#353740',

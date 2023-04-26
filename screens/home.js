@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Icon } from '@rneui/themed';
 import MenuSheet from '../components/menuSheet';
+import { useFocusEffect } from '@react-navigation/native';
 const homeImage = require('../assets/img/food.jpg');
 
 const HomeScreen = () => {
@@ -30,7 +31,7 @@ const HomeScreen = () => {
     }
   };
 
-  useEffect(() => {
+  useFocusEffect(() => {
     fetchMenuData();
   }, []);
   return (
