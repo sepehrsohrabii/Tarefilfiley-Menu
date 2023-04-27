@@ -13,29 +13,32 @@ const HomeScreen = () => {
   const menuRefRBSheet = useRef();
   const currentUrl = window.location.href;
   const restaurantLink = currentUrl.split('/').pop();
+  console.log(restaurantLink);
   // const route = useRoute();
   // const { restaurantLink } = route.params;
   const [restaurant, setRestaurant] = useState();
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState();
+  useEffect(() => {
+    fetchMenuData();
+  }, []);
   const fetchMenuData = async () => {
     try {
       const response = await axios.post('https://api.tarefilfiley.me/restaurant/get-data', {
         restaurantLink,
       });
+      console.log(response);
       if (response.status === 200) {
         setRestaurant(response.data.restaurant);
         setCategories(response.data.categories);
         setProducts(response.data.products);
       }
     } catch (error) {
+      console.log(error);
       console.error(error);
     }
   };
 
-  useEffect(() => {
-    fetchMenuData();
-  }, []);
   return (
     <SafeAreaProvider>
       {restaurant ? (
