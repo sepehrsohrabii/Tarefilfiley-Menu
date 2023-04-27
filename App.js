@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { useEffect } from 'react';
 import loadFont from './config/fonts';
 import Layout from './layout/layout';
+import HomeScreen from './screens/home';
 
 export default function App() {
   useEffect(() => {
@@ -10,7 +11,7 @@ export default function App() {
   }, []);
   return (
     <View style={styles.container}>
-      <Layout />
+      <HomeScreen />
       <StatusBar style="auto" />
     </View>
   );

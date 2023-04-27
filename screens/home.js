@@ -11,10 +11,10 @@ const homeImage = require('../assets/img/food.jpg');
 
 const HomeScreen = () => {
   const menuRefRBSheet = useRef();
-  // const currentUrl = window.location.href;
-  // const restaurantLink = currentUrl.split('/').pop();
-  const route = useRoute();
-  const { restaurantLink } = route.params;
+  const currentUrl = window.location.href;
+  const restaurantLink = currentUrl.split('/').pop();
+  // const route = useRoute();
+  // const { restaurantLink } = route.params;
   const [restaurant, setRestaurant] = useState();
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState();
