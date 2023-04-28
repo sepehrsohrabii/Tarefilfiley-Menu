@@ -24,13 +24,5 @@
     "web": {
       "favicon": "./assets/LOGO.png"
     }
-  },
-
-  "routes": [
-    {
-      "src": ".*",
-      "dest": "/index.html"
-    }
-  ],
-  "clean_urls": false
+  }
 }
