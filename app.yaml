@@ -1,0 +1,15 @@
+name: menu
+region: nyc
+services:
+  - name: web
+    environment_slug: node-js
+    github:
+      branch: main
+    build:
+      env:
+        - REACT_NATIVE_EXPO_WEB: 1
+      dockerfile_path: Dockerfile
+      source_dir: .
+    routes:
+      - path: /.*
+        destination: web:3000
