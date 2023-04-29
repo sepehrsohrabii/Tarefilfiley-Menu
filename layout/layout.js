@@ -32,7 +32,7 @@ const Layout = () => {
         <Stack.Screen
           name="Home"
           component={HomeScreen}
-          options={({ route }) => ({ restaurantLink: `${route.params.restaurantLink}` })}
+          // options={({ route }) => ({ restaurantLink: `${route.params.restaurantLink}` })}
         />
       </Stack.Navigator>
     </NavigationContainer>
