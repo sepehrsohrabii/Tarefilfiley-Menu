@@ -1,13 +1,32 @@
-name: my-app
+name: menu
 region: nyc
 services:
-- name: web
-  build:
-    env:
-      - REACT_NATIVE_PACKAGER_HOSTNAME: ${{env.DIGITAL_OCEAN_APP_PLATFORM_BUILD_ID}}-3000.${{env.DIGITALOCEAN_REGION}}.public.app.do
-  command: npx serve -s web-build
-  envs:
-    - API_URL=${{env.API_URL}}
-  http_port: 8080
-  routes:
-  - path: /.*
+  - environment_slug: node-js
+    github:
+      branch: main
+    http_port: 80
+    instance_count: 1
+    routes:
+      - path: /
+    size: s
+    spec:
+      build:
+        environment:
+          NODE_ENV: production
+        memory: 512Mi
+      command:
+        - npm
+        - start
+      port: 80
+      web:
+        commands:
+          start: npm start
+        healthcheck:
+          http_path: /healthz
+        routes:
+          - path: /
+            port: 80
+          - path: /healthz
+            port: 80
+      worker:
+        concurrency: 1
