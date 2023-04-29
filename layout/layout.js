@@ -5,13 +5,25 @@ import * as Linking from 'expo-linking';
 
 const Stack = createNativeStackNavigator();
 const Layout = () => {
-  const linking = {
-    prefixes: [],
-    config: {
-      screens: {
-        Home: ':restaurantLink',
+  const config = {
+    screens: {
+      Home: {
+        path: '',
+        screens: {
+          Home: '/:restaurantLink',
+        },
       },
     },
+  };
+  const linking = {
+    prefixes: [],
+    config,
+    // config: {
+    //   initialRouteName: 'Feed',
+    //   screens: {
+    //     Home: '/:restaurantLink',
+    //   },
+    // },
   };
 
   return (
