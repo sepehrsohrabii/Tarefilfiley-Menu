@@ -1,15 +1,13 @@
-name: menu
+name: my-app
 region: nyc
 services:
-  - name: web
-    environment_slug: node-js
-    github:
-      branch: main
-    build:
-      env:
-        - REACT_NATIVE_EXPO_WEB: 1
-      dockerfile_path: Dockerfile
-      source_dir: .
-    routes:
-      - path: /.*
-        destination: web:3000
+- name: web
+  build:
+    env:
+      - REACT_NATIVE_PACKAGER_HOSTNAME: ${{env.DIGITAL_OCEAN_APP_PLATFORM_BUILD_ID}}-3000.${{env.DIGITALOCEAN_REGION}}.public.app.do
+  command: npx serve -s web-build
+  envs:
+    - API_URL=${{env.API_URL}}
+  http_port: 8080
+  routes:
+  - path: /.*
