@@ -8,12 +8,21 @@ import { Icon } from '@rneui/themed';
 import MenuSheet from '../components/menuSheet';
 import { useRoute } from '@react-navigation/native';
 const homeImage = require('../assets/img/food.jpg');
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const HomeScreen = () => {
   const menuRefRBSheet = useRef();
   const currentUrl = window.location.href;
   const params = new URLSearchParams(currentUrl.split('?')[1]);
   const restaurantLink = params.get('restaurantLink');
+  if (restaurantLink === '' || restaurantLink === null || restaurantLink === undefined) {
+    try {
+      restaurantLink = AsyncStorage.getItem('restaurantLink');
+    } catch (e) {
+      console.log(e);
+      restaurantLink = '';
+    }
+  }
   const [restaurant, setRestaurant] = useState();
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState();
@@ -26,6 +35,7 @@ const HomeScreen = () => {
         setRestaurant(response.data.restaurant);
         setCategories(response.data.categories);
         setProducts(response.data.products);
+        await AsyncStorage.setItem('restaurantLink', restaurantLink);
       }
     } catch (error) {
       console.error(error);
