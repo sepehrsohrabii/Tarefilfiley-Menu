@@ -14,20 +14,18 @@ const HomeScreen = () => {
   const menuRefRBSheet = useRef();
   const currentUrl = window.location.href;
   const params = new URLSearchParams(currentUrl.split('?')[1]);
-  const restaurantLink = params.get('restaurantLink');
-  if (restaurantLink === '' || restaurantLink === null || restaurantLink === undefined) {
-    try {
-      restaurantLink = AsyncStorage.getItem('restaurantLink');
-    } catch (e) {
-      console.log(e);
-      restaurantLink = '';
-    }
-  }
+  let restaurantLink = params.get('restaurantLink');
+  console.log(restaurantLink);
+
   const [restaurant, setRestaurant] = useState();
   const [categories, setCategories] = useState();
   const [products, setProducts] = useState();
   const fetchMenuData = async () => {
     try {
+      if (restaurantLink === null) {
+        restaurantLink = await AsyncStorage.getItem('restaurantLink');
+        console.log(restaurantLink);
+      }
       const response = await axios.post('https://api.tarefilfiley.me/restaurant/get-data', {
         restaurantLink,
       });
@@ -200,16 +198,17 @@ const styles = StyleSheet.create({
   textContainer: {
     width: '100%',
     textAlign: 'right',
-    alignItems: 'end',
+    alignItems: 'center',
     paddingRight: '10%',
     paddingLeft: '10%',
     marginBottom: '10%',
+    flexDirection: 'row-reverse',
   },
   description: {
     fontFamily: theme.typography.paragraph2.fontFamily,
     fontSize: theme.typography.paragraph2.fontSize,
     color: theme.colors.white,
-    textAlign: 'justify',
+    textAlign: 'right',
     lineHeight: '25px',
   },
   normalText: {
